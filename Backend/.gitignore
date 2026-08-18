@@ -1,4 +1,6 @@
 .gitignore
 .env
-node_modules
+node_modules/
 Backend/.env
+
+.DS_Store
