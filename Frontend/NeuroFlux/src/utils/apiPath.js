@@ -1,4 +1,4 @@
-export const BASE_URL = "https://neuroflux-hkqk.onrender.com";
+export const BASE_URL = "";
 
 export const API_PATHS = {
     AUTH: {

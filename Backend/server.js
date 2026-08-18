@@ -28,11 +28,14 @@ const app = express();
 connectDB();
 
 //Middleware to handle CORS
+const allowedOrigin =
+    process.env.FRONTEND_URL || 'http://localhost:5173';
+
 app.use(
     cors({
-        origin: "*",
-        methods: ["GET", "POST", "PUT", "DELETE"],
-        allowedHeaders: ["content-Type", "Authorization"],
+        origin: allowedOrigin,
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+        allowedHeaders: ['Content-Type', 'Authorization'],
         credentials: true,
     })
 );
@@ -40,6 +43,14 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+    res.status(200).json({
+        success: true,
+        message: 'NeuroFlux API is running',
+        environment: process.env.NODE_ENV,
+    });
+});
 
 // Static folder for uploads
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
