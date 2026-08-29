@@ -31,7 +31,7 @@ jobs:
             --instance-ids "i-0e72c552ca1251ccd" \
             --document-name "AWS-RunShellScript" \
             --comment "Deploy NeuroFlux from GitHub Actions" \
-            --parameters 'commands=["cd /home/ubuntu/AWS_Deployment && ./deploy.sh"]' \
+            --parameters 'commands=["sudo -u ubuntu -H bash -lc \"cd /home/ubuntu/AWS_Deployment && ./deploy.sh\""]' \
             --query "Command.CommandId" \
             --output text)
 
